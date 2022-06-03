@@ -1,0 +1,39 @@
+name: Main
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+    env: 
+      HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+      HEROKU_APP_NAME: "user-game-bejs"
+      HEROKU_EMAIL: ${{secrets.HEROKU_EMAIL}}
+      TEST_VARIABLE: ${{ secrets.TEST_VARIABLE }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js
+        uses: actions/setup-node@v2
+        with: 
+          node-version: "14.x"
+      - name: Make envfile
+        run: |
+          echo "export HEROKU_API_KEY=${HEROKU_API_KEY}" > .env
+          echo "export HEROKU_APP_NAME=${HEROKU_APP_NAME}" >> .env
+          echo "export HEROKU_EMAIL=${HEROKU_EMAIL}" >> .env
+          echo "export TEST_VARIABLE=${TEST_VARIABLE}" >> .env
+      - name: Show .env file
+        run: cat .env
+      - name: Install dependencies
+        run: npm install
+      - name: Install sequlize-cli
+        run: npm install sequelize-cli
+      - name: Migrate DB
+        run: npx sequelize db:migrate --env production
+      # - name: Seeding DB
+      #   run: npx sequelize db:seed:all --env production
+      # - name: Test
+      #   run: npm test
+
