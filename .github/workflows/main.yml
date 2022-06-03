@@ -20,10 +20,12 @@ jobs:
           node-version: "14.x"
       - name: Make envfile
         run: |
-          echo "HEROKU_API_KEY=${HEROKU_API_KEY}" > .env
-          echo "HEROKU_APP_NAME=${HEROKU_APP_NAME}" >> .env
-          echo "TEST_EMAIL=${TEST_EMAIL}" >> .env
-          echo "TEST_VARIABLE=${TEST_VARIABLE}" >> .env
+          touch ../../.env
+          echo "HEROKU_API_KEY=${HEROKU_API_KEY}" > ../../.env
+          echo "HEROKU_APP_NAME=${HEROKU_APP_NAME}" >> ../../.env
+          echo "TEST_EMAIL=${TEST_EMAIL}" >> ../../.env
+          echo "TEST_VARIABLE=${TEST_VARIABLE}" >> ../../.env
+          echo "PROD_DB_DIALECT=postgres" >> ../../.env
       - name: Show .env file
         run: cat .env
       - name: Install dependencies
