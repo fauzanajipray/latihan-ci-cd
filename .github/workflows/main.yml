@@ -10,8 +10,8 @@ jobs:
     env: 
       HEROKU_API_KEY: "test1232343245"
       HEROKU_APP_NAME: "used-for-testing"
-      TEST_EMAIL: ${{ secrets.HEROKU_EMAIL}}
-      TEST_VARIBLE: ${{ secrets.TEST_VARIABLE }}
+      TEST_EMAIL: ${{ secrets.TEST_EMAIL }}
+      TEST_USERNAME: ${{ secrets.TEST_USERNAME }}
     steps:
       - uses: actions/checkout@v2
       - name: Use Node.js
@@ -24,7 +24,7 @@ jobs:
           echo "HEROKU_API_KEY=${HEROKU_API_KEY}" > ../../.env
           echo "HEROKU_APP_NAME=${HEROKU_APP_NAME}" >> ../../.env
           echo "TEST_EMAIL=${TEST_EMAIL}" >> ../../.env
-          echo "TEST_VARIABLE=${TEST_VARIABLE}" >> ../../.env
+          echo "TEST_USERNAME=${TEST_USERNAME}" >> ../../.env
           echo "PROD_DB_DIALECT=postgres" >> ../../.env
       - name: Show .env file
         run: cat ../../.env
