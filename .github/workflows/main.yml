@@ -8,9 +8,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env: 
-      HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+      HEROKU_API_KEY: "test1232343245"
       HEROKU_APP_NAME: "user-game-bejs"
-      HEROKU_EMAIL: ${{secrets.HEROKU_EMAIL}}
+      HEROKU_EMAIL: ${{ secrets.HEROKU_EMAIL}}
       TEST_VARIABLE: ${{ secrets.TEST_VARIABLE }}
     steps:
       - uses: actions/checkout@v2
