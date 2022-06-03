@@ -27,7 +27,7 @@ jobs:
           echo "TEST_VARIABLE=${TEST_VARIABLE}" >> ../../.env
           echo "PROD_DB_DIALECT=postgres" >> ../../.env
       - name: Show .env file
-        run: cat .env
+        run: cat ../../.env
       - name: Install dependencies
         run: npm install
       - name: Install sequlize-cli
