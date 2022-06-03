@@ -9,9 +9,9 @@ jobs:
     runs-on: ubuntu-latest
     env: 
       HEROKU_API_KEY: "test1232343245"
-      HEROKU_APP_NAME: "user-game-bejs"
-      HEROKU_EMAIL: ${{ secrets.HEROKU_EMAIL}}
-      TEST_VARIABLE: ${{ secrets.TEST_VARIABLE }}
+      HEROKU_APP_NAME: "used-for-testing"
+      TEST_EMAIL: ${{ secrets.HEROKU_EMAIL}}
+      TEST_VARIBLE: ${{ secrets.TEST_VARIABLE }}
     steps:
       - uses: actions/checkout@v2
       - name: Use Node.js
@@ -20,10 +20,10 @@ jobs:
           node-version: "14.x"
       - name: Make envfile
         run: |
-          echo "export HEROKU_API_KEY=${HEROKU_API_KEY}" > .env
-          echo "export HEROKU_APP_NAME=${HEROKU_APP_NAME}" >> .env
-          echo "export HEROKU_EMAIL=${HEROKU_EMAIL}" >> .env
-          echo "export TEST_VARIABLE=${TEST_VARIABLE}" >> .env
+          echo "HEROKU_API_KEY=${HEROKU_API_KEY}" > .env
+          echo "HEROKU_APP_NAME=${HEROKU_APP_NAME}" >> .env
+          echo "TEST_EMAIL=${TEST_EMAIL}" >> .env
+          echo "TEST_VARIABLE=${TEST_VARIABLE}" >> .env
       - name: Show .env file
         run: cat .env
       - name: Install dependencies
